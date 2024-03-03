@@ -56,11 +56,15 @@ function checkUser(){
         document.getElementById("guest").style.display = "inline-block";
     }
 }
+let logout = document.getElementById("logoutBtn");
+logout.addEventListener("click", () => {
+    localStorage.removeItem("user");
+    window.location.href = "index.html";
+});
 
 window.addEventListener('load', async () => {
     
     checkUser();
-    debugger;
     const main = document.querySelector('main');
 
     const recipes = await getRecipes();
