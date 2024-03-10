@@ -11,6 +11,7 @@ export function showAddMovie() {
 }
 
 async function addMovie(e) {
+    console.log("Adding movie");
     e.preventDefault();
     let formData = new FormData(e.target);
     let title = formData.get("title");
@@ -27,6 +28,7 @@ async function addMovie(e) {
     let url = "http://localhost:3030/data/movies";
     let response = await post(url, movie);
     console.log(response);
+    
     start();
 
 };
