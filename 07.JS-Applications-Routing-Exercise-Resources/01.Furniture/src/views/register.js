@@ -50,8 +50,6 @@ async function onRegister(e) {
     let data = createFormEntity(e);
     console.log("here register");
     let responce = await post("users/register", data);
-    debugger;
-
     //to do implement error handling conflict
     setUserData(responce);
     showDashboard();

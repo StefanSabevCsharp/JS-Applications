@@ -33,13 +33,12 @@ let furnitureTemplate = (furniture) => html`
 </div>`;
 
 export async function showDashboard() {
-  console.log("here dashboard");
   let allFurniture = await getFurniture();
   render(dashBoardTemplate(allFurniture));
   updateNav();
 }
 
-async function getFurniture() {
+ export async function getFurniture() {
   let data = await get("data/catalog");
   return data;
 }

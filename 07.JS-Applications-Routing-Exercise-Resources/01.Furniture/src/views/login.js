@@ -39,7 +39,6 @@ async function onLogin(e){
     let dataObj = createFormEntity(e);
     let response = await post("users/login",dataObj);
     console.log(response);
-    debugger;
     setUserData(response);
     page.redirect("/");
     
