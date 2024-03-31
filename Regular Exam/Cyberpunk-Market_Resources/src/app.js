@@ -14,6 +14,7 @@ import { showRegisterView } from "./views/showRegisterView.js";
 
 
 updateNav();
+page("/",showHomeView);
 page("/home",showHomeView);
 page("/login",showLoginView);
 page("/register",showRegisterView);

@@ -1,8 +1,9 @@
-import { post } from "../dataService/requester.js"
+
 import { formHandler } from "../utils/formHandler.js";
 import { html, render } from "../utils/lib.js";
 import page from "../../node_modules/page/page.mjs";
 import { displayError } from "../utils/notification.js";
+import { createSingleItem } from "../dataService/getItems.js";
 
 const createTemplate = () => html` 
 <section id="create">
@@ -52,8 +53,8 @@ async function onCreate(event) {
         displayError("All fields are required!");
         return;
     }
-    let url = "http://localhost:3030/data/cyberpunk";
-    let response = await post(url, data);
+    debugger;
+    await createSingleItem(data);
     page.redirect("/dashboard");
 
 }

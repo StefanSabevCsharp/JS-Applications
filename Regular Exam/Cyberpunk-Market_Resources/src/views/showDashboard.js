@@ -1,12 +1,11 @@
+import { getAllItems } from "../dataService/getItems.js";
 import { get } from "../dataService/requester.js";
 import { html, render } from "../utils/lib.js";
 
 const dashboardTemplate = (allItems) => html` 
 <h3 class="heading">Market</h3>
     <section id="dashboard">
-        <!-- Display a div with information about every post (if any)-->
-       
-        <!-- if there is no items make it with terrary operator -->
+
         ${allItems.length > 0 ? allItems.map(singleItemTemplate) : html`<h3 class="empty">No Items Yet</h3>`}
         
        
@@ -30,12 +29,5 @@ export async function showDashboard() {
     let allItems = await getAllItems();
 
     render(dashboardTemplate(allItems));
-}
-
-
-async function getAllItems(){
-    let url = "http://localhost:3030/data/cyberpunk?sortBy=_createdOn%20desc";
-    let allData = await get(url);
-    return allData;
 }
 

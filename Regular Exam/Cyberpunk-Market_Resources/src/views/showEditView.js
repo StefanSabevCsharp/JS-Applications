@@ -4,6 +4,7 @@ import { formHandler } from "../utils/formHandler.js";
 import { put } from "../dataService/requester.js";
 import page from "../../node_modules/page/page.mjs";
 import { displayError } from "../utils/notification.js";
+import { editSignleItem, getSingleItem } from "../dataService/getItems.js";
 
 
 const editTemplate = (item) => html`
@@ -57,9 +58,7 @@ const editTemplate = (item) => html`
 
 export async function showEditView(ctx) {
     let itemId = ctx.params.id;
-    let url = `http://localhost:3030/data/cyberpunk/${itemId}`;
-    let item = await get(url);
-    debugger;
+    let item = await getSingleItem(itemId);
     render(editTemplate(item));
 
    
@@ -72,8 +71,7 @@ async function onSubmit(event,item) {
         displayError("All fields are required!");
         return;
     }
-    let url = `http://localhost:3030/data/cyberpunk/${item._id}`;
-    let response = await put(url, data);
+    await editSignleItem(item._id,data);
     page.redirect(`/${item._id}`);
     
 

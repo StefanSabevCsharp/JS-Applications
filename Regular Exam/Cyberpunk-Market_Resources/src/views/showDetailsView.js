@@ -1,6 +1,7 @@
 import { get } from "../dataService/requester.js";
 import { html, render } from "../utils/lib.js";
 import { getUserData } from "../dataService/userData.js";
+import { getSingleItem } from "../dataService/getItems.js";
 
 const showDetailsTemplate = (item,userData,isCreator) => html`
 <section id="details">
@@ -33,10 +34,8 @@ const showDetailsTemplate = (item,userData,isCreator) => html`
 export async function showDetailsView(ctx) {
 
     let itemId = ctx.params.id;
-    let url = `http://localhost:3030/data/cyberpunk/${itemId}`;
-    let item = await get(url);
+    let item = await getSingleItem(itemId);
     let userData = getUserData();
     let isCreator = userData? userData._id === item._ownerId : false;
-    debugger;
     render(showDetailsTemplate(item,userData, isCreator));
 }
